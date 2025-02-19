@@ -26,6 +26,20 @@ public class Transaction : BaseEntity
         Consolidated = false;
     }
 
+    public void UpdateTransaction(TransactionType type, Money amount, DateTime date, string description)
+    {
+        Type = type;
+        Amount = amount;
+        Date = date.ToUniversalTime();
+        Description = description;
+    }
+
+
+    public void GenerateId()
+    {
+        Id = Guid.NewGuid();
+    }
+
     public void AddTransactionCreatedEvent()
     {
         new TransactionCreatedEvent(this, $"transacao.{this.Type.ToString()}");

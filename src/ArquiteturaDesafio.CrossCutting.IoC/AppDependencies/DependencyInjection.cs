@@ -47,6 +47,8 @@ namespace ArquiteturaDesafio.Infrastructure.CrossCutting.IoC
 
             services.AddScoped<IProducerMessage>(_ => new RabbitMQProducer(configuration.GetSection("RabbitMQSettings").Get<RabbitMQSettings>().Hostname));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IDailyBalanceRepository, DailyBalanceRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<JwtTokenService>();
             services.AddSingleton<IJwtTokenService, JwtTokenService>();

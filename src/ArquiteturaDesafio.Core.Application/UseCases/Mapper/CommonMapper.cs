@@ -14,6 +14,12 @@ using Entities = ArquiteturaDesafio.Core.Domain.Entities;
 using ArquiteturaDesafio.Core.Application.UseCases.Queries.GetUsersQuery;
 
 using Microsoft.Extensions.Configuration;
+using ArquiteturaDesafio.Application.UseCases.Commands.Transaction.CreateTransaction;
+using System.Reflection;
+using ArquiteturaDesafio.Core.Domain.Enum;
+using ArquiteturaDesafio.Core.Application.UseCases.Queries.GetUsersById;
+using ArquiteturaDesafio.Core.Application.UseCases.Queries.GetTransactionsById;
+using ArquiteturaDesafio.Application.UseCases.Commands.Transaction.UpdateTransaction;
 namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
 {
     public class CommonMapper : Profile
@@ -23,6 +29,9 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
             //Adress
             CreateMap<Address, AddressDto>();
             CreateMap<AddressDto, Address>();
+
+            CreateMap<Money, MoneyDTO>();
+            CreateMap<MoneyDTO, Money>();
 
             CreateMap<GeolocationDto, Geolocation>()
             .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Lat))
@@ -37,11 +46,20 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
             CreateMap<User, CreateUserResponse>();
             CreateMap<DeleteUserRequest, User>();
             CreateMap<User, DeleteUserRequest>();
-            CreateMap<UpdateUserRequest, User>();
-            CreateMap<User, UpdateUserRequest>();
+            CreateMap<UpdateTransactionRequest, User>();
+            CreateMap<User, UpdateTransactionRequest>();
             CreateMap<User, GetUsersQueryResponse>();
             CreateMap<User, UserDTO>();
-            CreateMap<UpdateUserRequest, UpdateUserResponse>();
+            CreateMap<UpdateTransactionRequest, UpdateTransactionResponse>();
+
+            //Transaction
+            CreateMap<CreateTransactionRequest, Transaction>();
+            CreateMap<TransactionBaseDTO, Transaction>();
+            
+            CreateMap<Transaction, TransactionBaseDTO>();
+            CreateMap<Transaction, TransactionQueryBaseDTO>();
+            CreateMap<Transaction, UpdateTransactionResponse>();
+            CreateMap<Transaction, GetTransactionsByIdResponse>();
         }
     }
 }
