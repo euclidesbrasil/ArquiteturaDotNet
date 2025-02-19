@@ -17,15 +17,16 @@ public sealed class User : BaseEntity
     public UserStatus Status { get; private set; }
     public UserRole Role { get; private set; }
 
-    private User() { } // Para o EF Core
-    public User(int id)
+    public User(Guid id)
     {
-         Id = id;
+        Id = id;
     }
+    private User() { } // Para o EF Core
 
     public User(string email, string username, string password, string firstname, string lastname,
         Address address, string phone, UserStatus status, UserRole role, IJwtTokenService _tokenService)
     {
+        Id = Guid.NewGuid();
         Email = email;
         Username = username;
         PasswordHash = _tokenService.HashPassword(password);

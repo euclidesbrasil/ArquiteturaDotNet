@@ -30,12 +30,10 @@ namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
         public async Task Handle_Should_DeleteUser_When_UserExists()
         {
             // Arrange
-            var request = new DeleteUserRequest(new Core.Application.UseCases.DTOs.UserDTO() { Id = 1 });
-
-            var user = new Core.Domain.Entities.User(1);
-
-            user.Id = 1;
-            _userRepository.Get(request.Id, CancellationToken.None).Returns(Task.FromResult(user));
+            var id = Guid.NewGuid();
+            var request = new DeleteUserRequest(new Core.Application.UseCases.DTOs.UserDTO() { Id = id });
+            var user = new Core.Domain.Entities.User(id);
+            _userRepository.Get(id, CancellationToken.None).Returns(Task.FromResult(user));
 
             // Act
             var response = await _handler.Handle(request, CancellationToken.None);
@@ -50,10 +48,11 @@ namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
         [Fact]
         public async Task Handle_Should_ThrowException_When_UserDoesNotExist()
         {
+            var id = Guid.NewGuid();
             // Arrange
-            var request = new DeleteUserRequest(new Core.Application.UseCases.DTOs.UserDTO() { Id = 1 });
+            var request = new DeleteUserRequest(new Core.Application.UseCases.DTOs.UserDTO() { Id = id });
 
-            _userRepository.Get(request.Id, CancellationToken.None).Returns(Task.FromResult<Core.Domain.Entities.User>(null));
+            _userRepository.Get(id, CancellationToken.None).Returns(Task.FromResult<Core.Domain.Entities.User>(null));
 
             // Act & Assert
             await Assert.ThrowsAsync<KeyNotFoundException>(() => _handler.Handle(request, CancellationToken.None));

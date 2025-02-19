@@ -26,7 +26,7 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.MongoDB.Configuration
             if (!collectionList.Contains("..."))
             {
                 // Cria a coleção "..."
-                await _database.CreateCollectionAsync("...");
+                // await _database.CreateCollectionAsync("...");
             }
         }
     }

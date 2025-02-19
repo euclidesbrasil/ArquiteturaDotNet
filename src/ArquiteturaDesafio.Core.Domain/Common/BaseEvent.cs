@@ -8,6 +8,7 @@ namespace ArquiteturaDesafio.Core.Domain.Common
 {
     public class BaseEvent<Event>
     {
+        public Guid Id { get; set; }
         public string Message { get; set; }
         public Event Data { get; set; }
         public DateTime CreatedAt { get; set; }

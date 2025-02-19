@@ -37,7 +37,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void UpdateUserInfo_Should_UpdatePropertiesCorrectly()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
             var newAddress = new Address();
 
             // Act
@@ -56,7 +57,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ChangePassword_Should_UpdatePasswordHash()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
             var tokenService = Substitute.For<IJwtTokenService>();
             tokenService.HashPassword("newPassword").Returns("newHashedPassword");
 
@@ -71,7 +73,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ValidatePassword_Should_ReturnTrue_When_PasswordIsValid()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
             var tokenService = Substitute.For<IJwtTokenService>();
             tokenService.VerifyPassword("password", "hashedPassword").Returns(true);
 
@@ -86,7 +89,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void UpdateName_Should_UpdateFirstnameAndLastname()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
 
             // Act
             user.UpdateName("newFirst", "newLast");
@@ -100,7 +104,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void UpdateAdress_Should_UpdateAddress()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
             var newAddress = new Address();
 
             // Act
@@ -114,7 +119,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void Activate_Should_SetStatusToActive()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
 
             // Act
             user.Activate();
@@ -127,7 +133,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void Deactivate_Should_SetStatusToInactive()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
 
             // Act
             user.Deactivate();
@@ -140,7 +147,8 @@ namespace ArquiteturaDesafio.Test.Domain
         public void Suspend_Should_SetStatusToSuspended()
         {
             // Arrange
-            var user = new User(1);
+            var guid = Guid.NewGuid();
+            var user = new User(guid);
 
             // Act
             user.Suspend();

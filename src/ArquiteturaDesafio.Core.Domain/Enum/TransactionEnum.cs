@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArquiteturaDesafio.Core.Application.UseCases.DTOs
+namespace ArquiteturaDesafio.Core.Domain.Enum
 {
-    public class UserDTO : UserBaseDTO
+    public enum TransactionType
     {
-        public Guid Id { get; set; }
+        Credit = 1,
+        Debit = 2
     }
 }

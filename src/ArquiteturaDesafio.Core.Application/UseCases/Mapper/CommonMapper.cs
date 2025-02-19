@@ -20,6 +20,18 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
     {
         public CommonMapper()
         {
+            //Adress
+            CreateMap<Address, AddressDto>();
+            CreateMap<AddressDto, Address>();
+
+            CreateMap<GeolocationDto, Geolocation>()
+            .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Lat))
+            .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Long));
+
+            CreateMap<Geolocation, GeolocationDto>()
+            .ForMember(dest => dest.Lat, opt => opt.MapFrom(src => src.Latitude))
+            .ForMember(dest => dest.Long, opt => opt.MapFrom(src => src.Longitude));
+
             //User
             CreateMap<CreateUserRequest, User>();
             CreateMap<User, CreateUserResponse>();

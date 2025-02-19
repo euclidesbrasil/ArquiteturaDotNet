@@ -5,9 +5,9 @@ namespace ArquiteturaDesafio.Application.UseCases.Commands.User.UpdateUser
 {
     public class UpdateUserRequest : UserBaseDTO, IRequest<UpdateUserResponse>
     {
-        public int Id { get; internal set; }
+        public Guid Id { get; internal set; }
 
-        public void UpdateId(int id)
+        public void UpdateId(Guid id)
         {
             Id = id;
         }

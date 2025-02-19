@@ -42,16 +42,16 @@ namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
                 Username = "testuser",
                 Email = "test@example.com",
                 Password = "Password123",
-                Firstname = "Test", 
+                Firstname = "Test",
                 Lastname = "User",
                 Address = new Core.Application.UseCases.DTOs.AddressDto() { City = "City", Geolocation = new Core.Application.UseCases.DTOs.GeolocationDto() { Lat = "1.0", Long = "2.0" }, Number = 1, Street = "Street", Zipcode = "606060660" },
                 Status = UserStatus.Active,
                 Role = UserRole.Admin
             };
-
+            var guid = Guid.NewGuid();
             var responseUser = new UpdateUserResponse
             {
-                Id =1,
+                Id = guid,
                 Username = "testuser",
                 Email = "test@example.com",
                 Password = "Password123",
@@ -61,8 +61,6 @@ namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
                 Status = UserStatus.Active,
                 Role = UserRole.Admin
             };
-            request.UpdateId(1);
-
             var user = new User(
                 "testuser",
                 "test@example.com",
@@ -70,7 +68,6 @@ namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
                 new Core.Domain.ValueObjects.Address("City", "Street", 1, "606060660",
                 new Core.Domain.ValueObjects.Geolocation("1.0", "2.0")), "11111",
                 UserStatus.Active, UserRole.Admin, _tokenService);
-            user.Id = 1;
             _mapper.Map<User>(request).Returns(user);
             _mapper.Map<UpdateUserResponse>(user).Returns(responseUser);
 
@@ -80,7 +77,7 @@ namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
             // Assert
             _userRepository.Received().Update(user);
             await _unitOfWork.Received().Commit(CancellationToken.None);
-            Assert.True(response.Id > 0);
+            Assert.True(response.Id == guid);
         }
     }
 }

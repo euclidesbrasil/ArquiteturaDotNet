@@ -30,7 +30,7 @@ namespace ArquiteturaDesafio.General.Api.Controllers
 
         // PUT /users/{id}
         [HttpPut]
-        public async Task<ActionResult<UpdateUserResponse>> Update(int id, [FromBody] UpdateUserRequest request,
+        public async Task<ActionResult<UpdateUserResponse>> Update(Guid id, [FromBody] UpdateUserRequest request,
                                                 CancellationToken cancellationToken)
         {
             request.UpdateId(id);
@@ -41,7 +41,7 @@ namespace ArquiteturaDesafio.General.Api.Controllers
       
 
         [HttpGet("/users/{id}")]
-        public async Task<ActionResult<List<string>>> GetById(int id,CancellationToken cancellationToken)
+        public async Task<ActionResult<List<string>>> GetById(Guid id,CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(new GetUsersByIdRequest(id), cancellationToken);
             return Ok(response);
