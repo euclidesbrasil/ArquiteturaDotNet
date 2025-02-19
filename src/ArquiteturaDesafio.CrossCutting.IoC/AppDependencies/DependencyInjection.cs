@@ -15,6 +15,7 @@ using ArquiteturaDesafio.Core.Application.UseCases.Mapper;
 using ArquiteturaDesafio.Core.Application.Shared.Behavior;
 using ArquiteturaDesafio.Infrastructure.Security;
 using ArquiteturaDesafio.Infrastructure.Messaging.RabbitMQ;
+using ArquiteturaDesafio.Infrastructure.Messaging.RabbitMQ.Consumer;
 namespace ArquiteturaDesafio.Infrastructure.CrossCutting.IoC
 {
     public static class DependencyInjection
@@ -46,6 +47,12 @@ namespace ArquiteturaDesafio.Infrastructure.CrossCutting.IoC
             // Adicionar a configuração RabbitMQ
 
             services.AddScoped<IProducerMessage>(_ => new RabbitMQProducer(configuration.GetSection("RabbitMQSettings").Get<RabbitMQSettings>().Hostname));
+            services.AddScoped<IConsumerMessage>(_ =>
+            {
+                var settings = configuration.GetSection("RabbitMQSettings").Get<RabbitMQSettings>();
+                return new RabbitMQConsumer(settings.Hostname, settings.Username, settings.Password);
+            }); 
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<IDailyBalanceRepository, DailyBalanceRepository>();

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using ArquiteturaDesafio.Core.Application.UseCases.DTOs;
+using ArquiteturaDesafio.Core.Domain.Common;
 
 namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetUsersQuery
 { 
@@ -24,7 +25,7 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetUsersQuery
 
         public async Task<GetUsersQueryResponse> Handle(GetUsersQueryRequest request, CancellationToken cancellationToken)
         {
-            var sales = await _userRepository.GetUsersPagination(new Domain.Common.PaginationQuery()
+            var sales = await _userRepository.GetUsersPagination(new PaginationQuery()
             {
                 Order = request.order,
                 Page = request.page,

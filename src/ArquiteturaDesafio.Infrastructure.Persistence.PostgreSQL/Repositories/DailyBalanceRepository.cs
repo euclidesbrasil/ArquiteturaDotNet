@@ -22,5 +22,12 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Repositories
         {
             _context = context;
         }
+
+        public async Task<DailyBalance> GetByDateAsync(DateTime date)
+        {
+            var dailyBalance = await _context.DailyBalances.Where(x => x.Date.Date == date.Date).FirstOrDefaultAsync();
+            return dailyBalance;
+        }
     }
+
 }

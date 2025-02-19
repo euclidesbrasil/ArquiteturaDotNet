@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace ArquiteturaDesafio.Core.Domain.Event
 {
-    public class TransactionCreatedEvent : BaseEvent<Entities.Transaction>
+    public class TransactionCreatedIntegrationEvent : BaseEvent<Entities.Transaction>
     {
-        public TransactionCreatedEvent(Entities.Transaction data, string message) : base(data, message)
+        public TransactionCreatedIntegrationEvent(Entities.Transaction data, string message) : base(data, message)
         {
 
         }
     }
 }
+

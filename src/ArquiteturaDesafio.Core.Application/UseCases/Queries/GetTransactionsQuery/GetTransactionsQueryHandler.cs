@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using ArquiteturaDesafio.Core.Domain.Common;
 using ArquiteturaDesafio.Core.Application.UseCases.DTOs;
 
 namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetTransactionsQuery
@@ -25,7 +26,7 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetTransactionsQu
 
         public async Task<GetTransactionsQueryResponse> Handle(GetTransactionsQueryRequest request, CancellationToken cancellationToken)
         {
-            var transactions = await _repository.GetPagination(new Domain.Common.PaginationQuery()
+            var transactions = await _repository.GetPagination(new PaginationQuery()
             {
                 Order = request.order,
                 Page = request.page,

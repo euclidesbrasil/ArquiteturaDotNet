@@ -40,9 +40,9 @@ public class Transaction : BaseEntity
         Id = Guid.NewGuid();
     }
 
-    public void AddTransactionCreatedEvent()
+    public TransactionCreatedIntegrationEvent CreateTransactionIntegrateEvent()
     {
-        new TransactionCreatedEvent(this, $"transacao.{this.Type.ToString()}");
+        return new TransactionCreatedIntegrationEvent(this, $"Está sendo criado um evento de criação que será enviado para fila");
     }
     public void MarkAsConsolidated()
     {

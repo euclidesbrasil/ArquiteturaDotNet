@@ -27,12 +27,18 @@ public class DailyBalance : BaseEntity
         TransactionCount = 0;
     }
 
-    public void AddTransaction(Transaction transaction)
+
+    public void AddTransaction(TransactionType type, Money amount)
     {
-        if (transaction.Type == TransactionType.Credit)
-            TotalCredits = TotalCredits.Add(transaction.Amount);
-        else
-            TotalDebits = TotalDebits.Add(transaction.Amount);
+        if (type == TransactionType.Credit)
+        {
+            TotalCredits = TotalCredits.Add(amount);
+        }
+
+        if (type == TransactionType.Debit)
+        {
+            TotalDebits = TotalDebits.Add(amount);
+        }
 
         FinalBalance = InitialBalance.Add(TotalCredits).Subtract(TotalDebits);
         TransactionCount++;

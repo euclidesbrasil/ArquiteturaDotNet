@@ -10,5 +10,6 @@ namespace ArquiteturaDesafio.Core.Domain.Interfaces
 {
     public interface IDailyBalanceRepository : IBaseRepository<DailyBalance>
     {
+        Task<DailyBalance> GetByDateAsync(DateTime date);
     }
 }
