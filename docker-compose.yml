@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=ARQDESAFIODOTNET_postgres;Port=5432;Database=ARQDESAFIODOTNET;Username=postgres;Password=admin
+      - MongoDbSettings__ConnectionString=mongodb://ARQDESAFIODOTNET_mongodb:27017
+      - MongoDbSettings__DatabaseName=ARQDESAFIODOTNET
+      - RabbitMQSettings__HostName=ARQDESAFIODOTNET_rabbitmq
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: ARQDESAFIODOTNET_rabbitmq
+    hostname: ARQDESAFIODOTNET_rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  postgres:
+    image: "postgres:15"
+    container_name: ARQDESAFIODOTNET_postgres
+    hostname: ARQDESAFIODOTNET_postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=ARQDESAFIODOTNET
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  mongodb:
+    image: "mongo:6"
+    container_name: ARQDESAFIODOTNET_mongodb
+    hostname: ARQDESAFIODOTNET_mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  pg_data:
+  mongo_data:

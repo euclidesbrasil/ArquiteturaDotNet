@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Compile Remove="Shared\Exceptions\**" />
+    <Compile Remove="UseCases\DeleteUser\**" />
+    <Compile Remove="UseCases\GetAllUser\**" />
+    <Compile Remove="UseCases\UpdateUser\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Shared\Exceptions\**" />
+    <EmbeddedResource Remove="UseCases\DeleteUser\**" />
+    <EmbeddedResource Remove="UseCases\GetAllUser\**" />
+    <EmbeddedResource Remove="UseCases\UpdateUser\**" />
+    <None Remove="Services\**" />
+    <None Remove="Shared\Exceptions\**" />
+    <None Remove="UseCases\DeleteUser\**" />
+    <None Remove="UseCases\GetAllUser\**" />
+    <None Remove="UseCases\UpdateUser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArquiteturaDesafio.Core.Domain\ArquiteturaDesafio.Core.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL\ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Core.Application\ArquiteturaDesafio.Core.Application.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Core.Domain\ArquiteturaDesafio.Core.Domain.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Messaging.RabbitMQ\ArquiteturaDesafio.Infrastructure.Messaging.RabbitMQ.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Persistence.MongoDB\ArquiteturaDesafio.Infrastructure.Persistence.MongoDB.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL\ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Security\ArquiteturaDesafio.Infrastructure.Security.csproj" />
+  </ItemGroup>
+
+</Project>
