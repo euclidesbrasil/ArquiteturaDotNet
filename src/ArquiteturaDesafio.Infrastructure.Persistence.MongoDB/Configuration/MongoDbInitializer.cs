@@ -23,10 +23,10 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.MongoDB.Configuration
             var collections = await _database.ListCollectionNamesAsync();
             var collectionList = await collections.ToListAsync();
 
-            if (!collectionList.Contains("..."))
+            if (!collectionList.Contains("DailyBalanceReport"))
             {
-                // Cria a coleção "..."
-                // await _database.CreateCollectionAsync("...");
+                // Cria a coleção "DailyBalanceReport"
+                await _database.CreateCollectionAsync("DailyBalanceReport");
             }
         }
     }

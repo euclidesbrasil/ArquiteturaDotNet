@@ -10,7 +10,6 @@ using MongoDB.Driver;
 using System.Reflection;
 using ArquiteturaDesafio.Infrastructure.Persistence.MongoDB.Configuration;
 using ArquiteturaDesafio.Infrastructure.Persistence.Repositories;
-using ArquiteturaDesafio.Infrastructure.Persistence.MongoDB.Service;
 using ArquiteturaDesafio.Core.Application.UseCases.Mapper;
 using ArquiteturaDesafio.Core.Application.Shared.Behavior;
 using ArquiteturaDesafio.Infrastructure.Security;
@@ -47,19 +46,14 @@ namespace ArquiteturaDesafio.Infrastructure.CrossCutting.IoC
             // Adicionar a configuração RabbitMQ
 
             services.AddScoped<IProducerMessage>(_ => new RabbitMQProducer(configuration.GetSection("RabbitMQSettings").Get<RabbitMQSettings>().Hostname));
-            services.AddScoped<IConsumerMessage>(_ =>
-            {
-                var settings = configuration.GetSection("RabbitMQSettings").Get<RabbitMQSettings>();
-                return new RabbitMQConsumer(settings.Hostname, settings.Username, settings.Password);
-            }); 
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<IDailyBalanceRepository, DailyBalanceRepository>();
+            services.AddScoped<IDailyBalanceReportRepository, DailyBalanceReportRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<JwtTokenService>();
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
-            services.AddScoped<CounterService>();
             services.AddAutoMapper(typeof(CommonMapper));
 
             var myhandlers = AppDomain.CurrentDomain.Load("ArquiteturaDesafio.Core.Application");

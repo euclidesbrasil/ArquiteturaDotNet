@@ -37,6 +37,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiteturaDesafio.CrossCut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiteturaDesafio.Test", "test\ArquiteturaDesafio.Test\ArquiteturaDesafio.Test.csproj", "{A5FD5EBC-1818-4630-A1CC-447E40E4C3C6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "f.Worker", "f.Worker", "{8A942522-AC0C-4172-B0EC-6DBBC309D355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquiteturaDesafio.Worker", "src\ArquiteturaDesafio.Worker\ArquiteturaDesafio.Worker.csproj", "{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,10 @@ Global
 		{A5FD5EBC-1818-4630-A1CC-447E40E4C3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5FD5EBC-1818-4630-A1CC-447E40E4C3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5FD5EBC-1818-4630-A1CC-447E40E4C3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +101,7 @@ Global
 		{A648AC24-AC11-4237-B3C1-89B93DF6059F} = {8DC7B288-3B3F-412D-973A-5533A315FC4C}
 		{AE37EE9E-D940-418D-9B56-E44004F34733} = {9BE36CC6-3D3A-47E9-B31A-2C347013A496}
 		{A5FD5EBC-1818-4630-A1CC-447E40E4C3C6} = {B43A1CB6-F620-41A2-8CBD-4BDDE2BEE001}
+		{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32} = {8A942522-AC0C-4172-B0EC-6DBBC309D355}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B536471F-70D4-42CD-9547-6B2D841D2DCC}

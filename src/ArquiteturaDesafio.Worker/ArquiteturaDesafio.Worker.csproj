@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ArquiteturaDesafio.Worker-57bd7983-7c7f-475e-932b-8cfbbc8cf504</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArquiteturaDesafio.Core.Domain\ArquiteturaDesafio.Core.Domain.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Messaging.RabbitMQ\ArquiteturaDesafio.Infrastructure.Messaging.RabbitMQ.csproj" />
+    <ProjectReference Include="..\ArquiteturaDesafio.Infrastructure.Persistence.MongoDB\ArquiteturaDesafio.Infrastructure.Persistence.MongoDB.csproj" />
+  </ItemGroup>
+</Project>
