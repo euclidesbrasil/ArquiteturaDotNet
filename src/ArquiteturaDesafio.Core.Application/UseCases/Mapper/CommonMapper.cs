@@ -20,6 +20,7 @@ using ArquiteturaDesafio.Core.Domain.Enum;
 using ArquiteturaDesafio.Core.Application.UseCases.Queries.GetUsersById;
 using ArquiteturaDesafio.Core.Application.UseCases.Queries.GetTransactionsById;
 using ArquiteturaDesafio.Application.UseCases.Commands.Transaction.UpdateTransaction;
+using ArquiteturaDesafio.Core.Application.UseCases.Queries.GetDailyReportQuery;
 namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
 {
     public class CommonMapper : Profile
@@ -60,6 +61,11 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
             CreateMap<Transaction, TransactionQueryBaseDTO>();
             CreateMap<Transaction, UpdateTransactionResponse>();
             CreateMap<Transaction, GetTransactionsByIdResponse>();
+
+            // Report
+            CreateMap<DailyBalanceReport, GetDailyReportQueryResponse>();
+            CreateMap<DailyBalance, GetDailyReportQueryResponse>();
+            
         }
     }
 }
