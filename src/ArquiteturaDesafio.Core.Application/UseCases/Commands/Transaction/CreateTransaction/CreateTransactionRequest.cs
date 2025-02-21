@@ -16,4 +16,9 @@ public class CreateTransactionRequest : TransactionBaseDTO, IRequest<CreateTrans
     {
         Id = id;
     }
+
+    public void UpdateDate(DateTime date)
+    {
+        this.Date = date;
+    }
 }

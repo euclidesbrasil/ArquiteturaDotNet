@@ -7,7 +7,7 @@ using NSubstitute;
 using System;
 using Xunit;
 
-namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
+namespace ArquiteturaDesafio.Tests.Application.Handlers
 {
     public class DeleteCartHandlerTests
     {

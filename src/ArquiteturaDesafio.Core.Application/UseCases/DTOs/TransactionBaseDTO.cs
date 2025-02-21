@@ -17,5 +17,6 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.DTOs
         public string Description { get; set; } = string.Empty;
 
         public bool Consolidated { get; private set; }
+        public DateTime Date { get; internal set; }
     }
 }

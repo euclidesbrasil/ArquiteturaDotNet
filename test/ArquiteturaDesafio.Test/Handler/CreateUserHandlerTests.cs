@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ArquiteturaDesafio.DeveloperEvaluation.Unit.Handler
+namespace ArquiteturaDesafio.Tests.Application.Handlers
 {
     public class CreateUserHandlerTests
     {

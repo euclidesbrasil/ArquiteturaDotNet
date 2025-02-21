@@ -4,4 +4,9 @@ namespace ArquiteturaDesafio.Application.UseCases.Commands.Transaction.UpdateTra
 public class UpdateTransactionResponse : TransactionBaseDTO
 {
     public Guid Id { get; internal set; }
+
+    public void UpdateId(Guid id)
+    {
+        Id = id;
+    }
 }
