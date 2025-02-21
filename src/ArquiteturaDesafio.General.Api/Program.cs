@@ -105,6 +105,8 @@ public class Program
                 {
                     var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
                     context.Database.Migrate();
+                    Console.WriteLine("Migration foi executado");
+
                     SeedData.Initialize(serviceScope.ServiceProvider, _jwtTokenService);
                 }
             }

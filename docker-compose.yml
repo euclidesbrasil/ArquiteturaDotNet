@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   api:
     build:
@@ -8,15 +6,16 @@ services:
     ports:
       - "5000:8080"
     environment:
-      - ConnectionStrings__DefaultConnection=Host=ARQDESAFIODOTNET_postgres;Port=5432;Database=ARQDESAFIODOTNET;Username=postgres;Password=admin
-      - MongoDbSettings__ConnectionString=mongodb://ARQDESAFIODOTNET_mongodb:27017
-      - MongoDbSettings__DatabaseName=ARQDESAFIODOTNET
-      - RabbitMQSettings__HostName=ARQDESAFIODOTNET_rabbitmq
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=desafio_postgres;Port=5432;Database=desafio;Username=postgres;Password=admin
+      - MongoDbSettings__ConnectionString=mongodb://desafio_mongodb:27017
+      - MongoDbSettings__DatabaseName=desafio
+      - RabbitMQSettings__HostName=desafio_rabbitmq
 
   rabbitmq:
     image: "rabbitmq:3-management"
-    container_name: ARQDESAFIODOTNET_rabbitmq
-    hostname: ARQDESAFIODOTNET_rabbitmq
+    container_name: desafio_rabbitmq
+    hostname: desafio_rabbitmq
     ports:
       - "5673:5672"
       - "15673:15672"
@@ -26,21 +25,21 @@ services:
 
   postgres:
     image: "postgres:15"
-    container_name: ARQDESAFIODOTNET_postgres
-    hostname: ARQDESAFIODOTNET_postgres
+    container_name: desafio_postgres
+    hostname: desafio_postgres
     ports:
       - "5433:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=ARQDESAFIODOTNET
+      - POSTGRES_DB=desafio
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   mongodb:
     image: "mongo:6"
-    container_name: ARQDESAFIODOTNET_mongodb
-    hostname: ARQDESAFIODOTNET_mongodb
+    container_name: desafio_mongodb
+    hostname: desafio_mongodb
     ports:
       - "27018:27017"
     volumes:

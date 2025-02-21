@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationInicial : Migration
+    public partial class CriacaoBanco : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,9 +22,8 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
                     total_credits = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
                     total_debits = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
                     transaction_count = table.Column<int>(type: "integer", nullable: false),
-                    DateCreated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    DateDeleted = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true)
+                    DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,9 +40,8 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
                     date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     consolidated = table.Column<bool>(type: "boolean", nullable: false),
-                    DateCreated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    DateDeleted = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true)
+                    DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,9 +67,8 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
                     Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Status = table.Column<string>(type: "text", nullable: false),
                     Role = table.Column<string>(type: "text", nullable: false),
-                    DateCreated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    DateUpdated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    DateDeleted = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true)
+                    DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
