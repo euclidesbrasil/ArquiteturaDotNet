@@ -28,7 +28,6 @@ namespace ArquiteturaDesafio.General.Api.Controllers
             return Ok(response);
         }
 
-        // PUT /users/{id}
         [HttpPut]
         public async Task<ActionResult<UpdateUserResponse>> Update(Guid id, [FromBody] UpdateUserRequest request,
                                                 CancellationToken cancellationToken)
@@ -38,16 +37,14 @@ namespace ArquiteturaDesafio.General.Api.Controllers
             return Ok(response);
         }
 
-      
-
-        [HttpGet("/users/{id}")]
+        [HttpGet("/Users/{id}")]
         public async Task<ActionResult<List<string>>> GetById(Guid id,CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(new GetUsersByIdRequest(id), cancellationToken);
             return Ok(response);
         }
 
-        [HttpGet("/users")]
+        [HttpGet("/Users")]
         public async Task<ActionResult<List<GetUsersQueryResponse>>> GetUsersQuery(CancellationToken cancellationToken, int _page = 1, int _size = 10, [FromQuery] Dictionary<string, string> filters = null, string _order = "id asc")
         {
             filters = filters ?? new Dictionary<string, string>();

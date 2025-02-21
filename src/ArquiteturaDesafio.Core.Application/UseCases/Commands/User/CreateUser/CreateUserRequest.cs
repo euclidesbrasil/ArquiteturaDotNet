@@ -8,6 +8,5 @@ namespace ArquiteturaDesafio.Application.UseCases.Commands.User.CreateUser
 {
     public class CreateUserRequest : UserDTO, IRequest<CreateUserResponse>
     {
-        public int Id { get; internal set; }
     }
 }

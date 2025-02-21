@@ -46,7 +46,7 @@ namespace ArquiteturaDesafio.General.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("/transaction/{id}")]
+        [HttpGet("/Transaction/{id}")]
         public async Task<ActionResult<GetTransactionsByIdResponse>> GetById(Guid id,CancellationToken cancellationToken)
         {
             var request = new GetTransactionsByIdRequest(id);
@@ -54,7 +54,7 @@ namespace ArquiteturaDesafio.General.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("/transaction")]
+        [HttpGet("/Transaction")]
         public async Task<ActionResult<GetTransactionsQueryResponse>> GetAllQuery(CancellationToken cancellationToken, int _page = 1, int _size = 10, [FromQuery] Dictionary<string, string> filters = null, string _order = "id asc")
         {
             filters = filters ?? new Dictionary<string, string>();

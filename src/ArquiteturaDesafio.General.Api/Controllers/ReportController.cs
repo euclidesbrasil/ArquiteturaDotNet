@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 [Route("[controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class ReportController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -16,7 +16,7 @@ public class ReportController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("/report/daily/mongodb/")]
+    [HttpGet("/Report/Daily/Mongodb/")]
     public async Task<IActionResult> GetDailyReport([FromQuery] DateTime? date)
     {
         // Se não for passado, usa a data atual (UTC)
@@ -29,7 +29,7 @@ public class ReportController : ControllerBase
     }
 
     // Endpoint para PostgreSQL
-    [HttpGet("/report/daily/postgres/")]
+    [HttpGet("/Report/Daily/Postgres/")]
     public async Task<IActionResult> GetDailyReportPostgres([FromQuery] DateTime? date)
     {
         var reportDate = (date ?? DateTime.UtcNow).Date;
