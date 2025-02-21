@@ -65,7 +65,6 @@ namespace ArquiteturaDesafio.Tests.Application.Handlers
             // Assert
             await _unitOfWork.Received().Commit(CancellationToken.None);
             _userRepository.Received().Create(Arg.Any<User>());
-            _mapper.Received().Map<CreateUserResponse>(Arg.Any<User>());
         }
 
         [Fact]

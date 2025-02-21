@@ -38,7 +38,7 @@ namespace ArquiteturaDesafio.General.Api.Controllers
         }
 
         [HttpGet("/Users/{id}")]
-        public async Task<ActionResult<List<string>>> GetById(Guid id,CancellationToken cancellationToken)
+        public async Task<ActionResult<GetUsersByIdResponse>> GetById(Guid id,CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(new GetUsersByIdRequest(id), cancellationToken);
             return Ok(response);

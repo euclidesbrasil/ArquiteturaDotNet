@@ -52,6 +52,8 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
             CreateMap<User, GetUsersQueryResponse>();
             CreateMap<User, UserDTO>();
             CreateMap<UpdateTransactionRequest, UpdateTransactionResponse>();
+            CreateMap<User, UpdateUserResponse>();
+            CreateMap<UserDTO, UpdateUserResponse>();
 
             //Transaction
             CreateMap<CreateTransactionRequest, Transaction>();
@@ -65,7 +67,6 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
             // Report
             CreateMap<DailyBalanceReport, GetDailyReportQueryResponse>();
             CreateMap<DailyBalance, GetDailyReportQueryResponse>();
-            
         }
     }
 }

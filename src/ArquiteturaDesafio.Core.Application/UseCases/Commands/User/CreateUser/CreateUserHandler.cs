@@ -65,6 +65,6 @@ public class CreateUserHandler :
         _userRepository.Create(user);
 
         await _unitOfWork.Commit(cancellationToken);
-        return _mapper.Map<CreateUserResponse>(user);
+        return new CreateUserResponse(user.Id);
     }
 }

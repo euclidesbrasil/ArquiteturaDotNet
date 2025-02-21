@@ -69,6 +69,11 @@ public sealed class User : BaseEntity
         Address = newAdress;
     }
 
+    public void UpdateEmail(string email)
+    {
+        Email = email;
+    }
+
     /// <summary>
     /// Activates the user account.
     /// Changes the user's status to Active.

@@ -4,8 +4,8 @@ using ArquiteturaDesafio.Core.Domain.Common;
 using ArquiteturaDesafio.Core.Domain.Entities;
 using ArquiteturaDesafio.Core.Domain.Enum;
 using ArquiteturaDesafio.Core.Domain.Interfaces;
+using ArquiteturaDesafio.Core.Domain.ValueObjects;
 using AutoMapper;
-using Bogus.DataSets;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -68,7 +68,11 @@ namespace ArquiteturaDesafio.Tests.Application.Handlers
                 new Core.Domain.ValueObjects.Address("City", "Street", 1, "606060660",
                 new Core.Domain.ValueObjects.Geolocation("1.0", "2.0")), "11111",
                 UserStatus.Active, UserRole.Admin, _tokenService);
+            var endereco = new Core.Domain.ValueObjects.Address("City", "Street", 1, "606060660",
+                new Core.Domain.ValueObjects.Geolocation("1.0", "2.0"));
+            _userRepository.Get(request.Id, CancellationToken.None).Returns(Task.FromResult(user));
             _mapper.Map<User>(request).Returns(user);
+            _mapper.Map<Address>(request.Address).Returns(endereco);
             _mapper.Map<UpdateUserResponse>(user).Returns(responseUser);
 
             // Act

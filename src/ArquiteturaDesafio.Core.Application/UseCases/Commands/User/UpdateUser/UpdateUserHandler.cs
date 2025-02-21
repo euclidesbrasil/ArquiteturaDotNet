@@ -3,6 +3,7 @@
 using ArquiteturaDesafio.Core.Domain.Entities;
 using ArquiteturaDesafio.Core.Domain.Interfaces;
 using MediatR;
+using ArquiteturaDesafio.Core.Domain.ValueObjects;
 
 namespace ArquiteturaDesafio.Application.UseCases.Commands.User.UpdateUser;
 
@@ -29,8 +30,11 @@ public class UpdateUserHandler :
     public async Task<UpdateUserResponse> Handle(UpdateUserRequest request,
         CancellationToken cancellationToken)
     {
-
-        var user = _mapper.Map<ArquiteturaDesafio.Core.Domain.Entities.User>(request);
+        var adress = _mapper.Map<Address>(request.Address);
+        var user = await _userRepository.Get(request.Id, cancellationToken);
+        user.UpdateUserInfo(request.Firstname, request.Lastname, adress, request.Phone, request.Status, request.Role);
+        user.UpdateAdress(adress);
+        user.UpdateEmail(request.Email);
         user.UpdateName(request.Firstname, request.Lastname);
         user.ChangePassword(request.Password, _tokenService);
         _userRepository.Update(user);
