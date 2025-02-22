@@ -8,15 +8,15 @@ namespace ArquiteturaDesafio.Core.Domain.Entities;
 public class DailyBalance : BaseEntity
 {
     public DateTime Date { get; private set; }
-    public Money InitialBalance { get; private set; }
-    public Money FinalBalance { get; private set; }
+    public Balance InitialBalance { get; private set; }
+    public Balance FinalBalance { get; private set; }
     public Money TotalCredits { get; private set; }
     public Money TotalDebits { get; private set; }
     public int TransactionCount { get; private set; }
 
     private DailyBalance() { }
 
-    public DailyBalance(DateTime date, Money initialBalance)
+    public DailyBalance(DateTime date, Balance initialBalance)
     {
         Id = Guid.NewGuid();
         Date = date;

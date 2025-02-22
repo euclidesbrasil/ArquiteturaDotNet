@@ -14,7 +14,7 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ShouldInitializeDailyBalanceCorrectly()
         {
             // Arrange
-            var initialBalance = new Money(100);
+            var initialBalance = new Balance(100);
             var date = DateTime.Now;
 
             // Act
@@ -22,8 +22,8 @@ namespace ArquiteturaDesafio.Test.Domain
 
             // Assert
             Assert.Equal(date, dailyBalance.Date);
-            Assert.Equal(initialBalance, dailyBalance.InitialBalance);
-            Assert.Equal(initialBalance, dailyBalance.FinalBalance);
+            Assert.Equal(initialBalance.Amount, dailyBalance.InitialBalance.Amount);
+            Assert.Equal(initialBalance.Amount, dailyBalance.FinalBalance.Amount);
             Assert.Equal(new Money(0), dailyBalance.TotalCredits);
             Assert.Equal(new Money(0), dailyBalance.TotalDebits);
             Assert.Equal(0, dailyBalance.TransactionCount);
@@ -33,7 +33,7 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ShouldAddCreditTransaction()
         {
             // Arrange
-            var initialBalance = new Money(100);
+            var initialBalance = new Balance(100);
             var dailyBalance = new DailyBalance(DateTime.Now, initialBalance);
             var creditAmount = new Money(50);
 
@@ -51,7 +51,7 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ShouldAddDebitTransaction()
         {
             // Arrange
-            var initialBalance = new Money(100);
+            var initialBalance = new Balance(100);
             var dailyBalance = new DailyBalance(DateTime.Now, initialBalance);
             var debitAmount = new Money(30);
 

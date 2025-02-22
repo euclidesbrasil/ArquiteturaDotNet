@@ -27,7 +27,6 @@ namespace ArquiteturaDesafio.Test.Domain
             Assert.Equal(amount, transaction.Amount);
             Assert.Equal(date, transaction.Date);
             Assert.Equal(description, transaction.Description);
-            Assert.False(transaction.Consolidated);
         }
 
         [Fact]
@@ -70,23 +69,6 @@ namespace ArquiteturaDesafio.Test.Domain
 
             // Assert
             Assert.NotEqual(Guid.Empty, transaction.Id);
-        }
-
-        [Fact]
-        public void ShouldMarkTransactionAsConsolidated()
-        {
-            // Arrange
-            var type = TransactionType.Credit;
-            var amount = new Money(100);
-            var date = DateTime.Now;
-            var description = "Test transaction";
-            var transaction = new Transaction(type, amount, date, description);
-
-            // Act
-            transaction.MarkAsConsolidated();
-
-            // Assert
-            Assert.True(transaction.Consolidated);
         }
 
         [Fact]

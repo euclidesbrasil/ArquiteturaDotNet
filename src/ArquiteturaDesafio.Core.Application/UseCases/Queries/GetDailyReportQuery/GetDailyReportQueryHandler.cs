@@ -47,25 +47,30 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetDailyReportQue
 
         private async Task< GetDailyReportQueryResponse> getDataFromRelationalDB(GetDailyReportQueryRequest request, CancellationToken cancellationToken)
         {
-            var filterDailysBalance = await _repositoryRelational.Filter(x => x.Date == request.Date, cancellationToken);
+            var filterDailysBalance = await _repositoryRelational.Filter(x => 
+            x.Date.Year == request.Date.Value.Year &&
+            x.Date.Month == request.Date.Value.Month &&
+            x.Date.Day == request.Date.Value.Day, cancellationToken);
 
             List<TransactionQueryBaseDTO> itensReturn = new List<TransactionQueryBaseDTO>();
             var dailyBalance = filterDailysBalance.FirstOrDefault();
 
             // Caso não exista, instancia o objeto para inserir
-            dailyBalance = dailyBalance ?? new Core.Domain.Entities.DailyBalance(request.Date.Value, new Money(0));
+            dailyBalance = dailyBalance ?? new Core.Domain.Entities.DailyBalance(request.Date.Value, new Balance(0));
             return _mapper.Map<GetDailyReportQueryResponse>(dailyBalance);
         }
 
         private async Task<GetDailyReportQueryResponse> getDataFromNotRelationalDB(GetDailyReportQueryRequest request, CancellationToken cancellationToken)
         {
-            var filterDailysBalance = await _repositoryNotRelational.Filter(x => x.Date == request.Date, cancellationToken);
-
+            var filterDailysBalance = await _repositoryNotRelational.Filter(x =>
+            x.Date.Year == request.Date.Value.Year &&
+            x.Date.Month == request.Date.Value.Month &&
+            x.Date.Day == request.Date.Value.Day, cancellationToken);
             List<TransactionQueryBaseDTO> itensReturn = new List<TransactionQueryBaseDTO>();
             var dailyBalance = filterDailysBalance.FirstOrDefault();
 
             // Caso não exista, instancia o objeto para inserir
-            dailyBalance = dailyBalance ?? new Core.Domain.Entities.DailyBalanceReport(request.Date.Value, new Money(0));
+            dailyBalance = dailyBalance ?? new Core.Domain.Entities.DailyBalanceReport(request.Date.Value, new Balance(0));
             return _mapper.Map<GetDailyReportQueryResponse>(dailyBalance);
         }
 

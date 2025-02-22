@@ -30,14 +30,10 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Configuration
             builder.Property(t => t.Date)
                 .HasColumnName("date")
                 .IsRequired();
-
+                
             builder.Property(t => t.Description)
                 .HasColumnName("description")
                 .HasMaxLength(255)
-                .IsRequired();
-
-            builder.Property(t => t.Consolidated)
-                .HasColumnName("consolidated")
                 .IsRequired();
         }
     }

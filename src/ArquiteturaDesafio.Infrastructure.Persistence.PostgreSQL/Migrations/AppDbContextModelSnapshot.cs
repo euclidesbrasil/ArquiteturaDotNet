@@ -53,10 +53,6 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("Consolidated")
-                        .HasColumnType("boolean")
-                        .HasColumnName("consolidated");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("date");
@@ -144,7 +140,7 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
 
             modelBuilder.Entity("ArquiteturaDesafio.Core.Domain.Entities.DailyBalance", b =>
                 {
-                    b.OwnsOne("ArquiteturaDesafio.Core.Domain.ValueObjects.Money", "FinalBalance", b1 =>
+                    b.OwnsOne("ArquiteturaDesafio.Core.Domain.ValueObjects.Balance", "FinalBalance", b1 =>
                         {
                             b1.Property<Guid>("DailyBalanceId")
                                 .HasColumnType("uuid");
@@ -162,7 +158,7 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
                                 .HasForeignKey("DailyBalanceId");
                         });
 
-                    b.OwnsOne("ArquiteturaDesafio.Core.Domain.ValueObjects.Money", "InitialBalance", b1 =>
+                    b.OwnsOne("ArquiteturaDesafio.Core.Domain.ValueObjects.Balance", "InitialBalance", b1 =>
                         {
                             b1.Property<Guid>("DailyBalanceId")
                                 .HasColumnType("uuid");

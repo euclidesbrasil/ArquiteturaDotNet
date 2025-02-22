@@ -43,7 +43,7 @@ public class CreateTransactionHandler :
         // Validação de UserStatus
         if (!Enum.IsDefined(typeof(TransactionType), request.Type))
         {
-            throw new InvalidOperationException($"Tipo inválido para Type. Value: {request.Type}");
+            throw new KeyNotFoundException($"Tipo inválido para Type. Value: {request.Type}");
         }
 
         _transactionRepository.Create(transaction);

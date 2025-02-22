@@ -24,18 +24,17 @@ namespace ArquiteturaDesafio.Tests.Application.Handlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITransactionRepository _transactionRepository;
-        private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly IProducerMessage _producerMessage;
         private readonly CreateTransactionHandler _handler;
-
+        private readonly IProducerMessage _producerMessage;
+        private readonly IMediator _mediator;
         public CreateTransactionHandlerTests()
         {
             _unitOfWork = Substitute.For<IUnitOfWork>();
             _transactionRepository = Substitute.For<ITransactionRepository>();
             _mediator = Substitute.For<IMediator>();
-            _mapper = Substitute.For<IMapper>();
             _producerMessage = Substitute.For<IProducerMessage>();
+            _mapper = Substitute.For<IMapper>();
             _handler = new CreateTransactionHandler(_unitOfWork, _transactionRepository, _mediator, _mapper, _producerMessage);
         }
 
@@ -81,7 +80,7 @@ namespace ArquiteturaDesafio.Tests.Application.Handlers
             var transaction = new Transaction(request.Type, new Money(request.Amount.Amount), request.Date, request.Description);
             _mapper.Map<Transaction>(request).Returns(transaction);
             // Act & Assert
-            await Assert.ThrowsAsync<InvalidOperationException>(() => _handler.Handle(request, CancellationToken.None));
+            await Assert.ThrowsAsync<KeyNotFoundException>(() => _handler.Handle(request, CancellationToken.None));
         }
     }
 }

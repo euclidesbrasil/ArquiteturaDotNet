@@ -1,5 +1,6 @@
 ﻿using ArquiteturaDesafio.Application.UseCases.Commands.Transaction.CreateTransaction;
 using ArquiteturaDesafio.Application.UseCases.Commands.Transaction.DeleteTransaction;
+using ArquiteturaDesafio.Application.UseCases.Commands.Transaction.UpdateTransaction;
 using ArquiteturaDesafio.Application.UseCases.Commands.User.CreateUser;
 using ArquiteturaDesafio.Core.Application.Domain;
 using ArquiteturaDesafio.Core.Domain.Common;
@@ -27,13 +28,16 @@ namespace ArquiteturaDesafio.Tests.Application.Handlers
         private readonly ITransactionRepository _transactionRepository;
         private readonly IMapper _mapper;
         private readonly DeleteTransactionHandler _handler;
-
+        private readonly IProducerMessage _producerMessage;
+        private readonly IMediator _mediator;
         public DeleteTransactionHandlerTests()
         {
             _unitOfWork = Substitute.For<IUnitOfWork>();
             _transactionRepository = Substitute.For<ITransactionRepository>();
             _mapper = Substitute.For<IMapper>();
-            _handler = new DeleteTransactionHandler(_unitOfWork, _transactionRepository, _mapper);
+            _mediator = Substitute.For<IMediator>();
+            _producerMessage = Substitute.For<IProducerMessage>();
+            _handler = new DeleteTransactionHandler(_unitOfWork, _transactionRepository, _mapper, _producerMessage, _mediator);
         }
 
         [Fact]

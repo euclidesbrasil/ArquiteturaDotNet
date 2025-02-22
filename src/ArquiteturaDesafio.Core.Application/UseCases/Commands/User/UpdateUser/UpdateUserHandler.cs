@@ -30,8 +30,13 @@ public class UpdateUserHandler :
     public async Task<UpdateUserResponse> Handle(UpdateUserRequest request,
         CancellationToken cancellationToken)
     {
-        var adress = _mapper.Map<Address>(request.Address);
         var user = await _userRepository.Get(request.Id, cancellationToken);
+        if (user is null)
+        {
+            throw new InvalidOperationException($"Usuario não encontrado. Id: {request.Id}");
+        }
+
+        var adress = _mapper.Map<Address>(request.Address);
         user.UpdateUserInfo(request.Firstname, request.Lastname, adress, request.Phone, request.Status, request.Role);
         user.UpdateAdress(adress);
         user.UpdateEmail(request.Email);

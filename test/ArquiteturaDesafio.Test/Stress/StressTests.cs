@@ -64,6 +64,7 @@ namespace ArquiteturaDesafio.Test.Integration
             var iteration = 0;
             try
             {
+                // 30 segundos de simulação
                 while (iteration < 30)
                 {
                     decimal randomDecimal = 1 + (decimal)(random.NextDouble() * (1000 - 1));

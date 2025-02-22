@@ -31,7 +31,7 @@ namespace ArquiteturaDesafio.Core.Application.Service
             var dailyBalance = await _dailyBalanceRepository.GetByDateAsync(notification.Date);
             
             // Caso não exista, instancia o objeto para inserir
-            dailyBalance = dailyBalance ?? new DailyBalance(notification.Date, new Money(0));
+            dailyBalance = dailyBalance ?? new DailyBalance(notification.Date, new Balance(0));
 
             //Verifica se é um novo saldo
             var isNewBalance = dailyBalance.TransactionCount == 0;

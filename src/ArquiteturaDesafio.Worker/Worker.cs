@@ -45,7 +45,7 @@ namespace ArquiteturaDesafio.Worker
                 var dailyBalance = filterDailysBalance.FirstOrDefault();
 
                 // Caso não exista, instancia o objeto para inserir
-                dailyBalance = dailyBalance ?? new Core.Domain.Entities.DailyBalanceReport(_transaction.Date, new Money(0));
+                dailyBalance = dailyBalance ?? new Core.Domain.Entities.DailyBalanceReport(_transaction.Date, new Balance(0));
 
                 // Verifica se é um novo saldo
                 var isNewBalance = dailyBalance.TransactionCount == 0;

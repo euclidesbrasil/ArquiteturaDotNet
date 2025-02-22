@@ -25,9 +25,9 @@ public class DeleteUserHandler : IRequestHandler<DeleteUserRequest, DeleteUserRe
     {
         ArquiteturaDesafio.Core.Domain.Entities.User user = await _userRepository.Get(request.Id, cancellationToken);
 
-        if (user == null)
+        if (user is null)
         {
-            throw new KeyNotFoundException($"User with ID  {request.Id} does not exist in our database");
+            throw new KeyNotFoundException($"Usuario não encontrado. Id: {request.Id}");
         }
 
         _userRepository.Delete(user);

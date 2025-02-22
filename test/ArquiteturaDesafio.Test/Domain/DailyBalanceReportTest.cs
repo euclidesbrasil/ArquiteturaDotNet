@@ -14,7 +14,7 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ShouldInitializeDailyBalanceReportCorrectly()
         {
             // Arrange
-            var initialBalance = new Money(100);
+            var initialBalance = new Balance(100);
             var date = DateTime.Now;
 
             // Act
@@ -33,7 +33,7 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ShouldAddCreditTransaction()
         {
             // Arrange
-            var initialBalance = new Money(100);
+            var initialBalance = new Balance(100);
             var dailyBalanceReport = new DailyBalanceReport(DateTime.Now, initialBalance);
             var creditAmount = new Money(50);
 
@@ -51,7 +51,7 @@ namespace ArquiteturaDesafio.Test.Domain
         public void ShouldAddDebitTransaction()
         {
             // Arrange
-            var initialBalance = new Money(100);
+            var initialBalance = new Balance(100);
             var dailyBalanceReport = new DailyBalanceReport(DateTime.Now, initialBalance);
             var debitAmount = new Money(30);
 

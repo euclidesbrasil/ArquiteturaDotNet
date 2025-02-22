@@ -32,6 +32,7 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Mapper
             CreateMap<AddressDto, Address>();
 
             CreateMap<Money, MoneyDTO>();
+            CreateMap<Balance, MoneyDTO>();
             CreateMap<MoneyDTO, Money>();
 
             CreateMap<GeolocationDto, Geolocation>()

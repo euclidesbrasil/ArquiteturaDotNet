@@ -39,7 +39,6 @@ namespace ArquiteturaDesafio.Infrastructure.Persistence.PostgreSQL.Migrations
                     amount = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
                     date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    consolidated = table.Column<bool>(type: "boolean", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },

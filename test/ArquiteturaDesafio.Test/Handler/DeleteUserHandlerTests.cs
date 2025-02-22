@@ -9,7 +9,7 @@ using Xunit;
 
 namespace ArquiteturaDesafio.Tests.Application.Handlers
 {
-    public class DeleteCartHandlerTests
+    public class DeleteUserHandlerTests
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
@@ -17,7 +17,7 @@ namespace ArquiteturaDesafio.Tests.Application.Handlers
         private readonly IJwtTokenService _tokenService;
         private readonly DeleteUserHandler _handler;
 
-        public DeleteCartHandlerTests()
+        public DeleteUserHandlerTests()
         {
             _unitOfWork = Substitute.For<IUnitOfWork>();
             _userRepository = Substitute.For<IUserRepository>();

@@ -26,6 +26,10 @@ namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetTransactionsBy
         {
 
             Transaction _transaction = await _repository.Get(query.id, cancellationToken);
+            if (_transaction is null)
+            {
+                throw new InvalidOperationException($"Transação não encontrada. Id: {query.id}");
+            }
 
             return _mapper.Map<GetTransactionsByIdResponse>(_transaction);
         }

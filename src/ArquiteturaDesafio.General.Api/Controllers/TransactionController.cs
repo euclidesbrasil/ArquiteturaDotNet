@@ -25,6 +25,9 @@ namespace ArquiteturaDesafio.General.Api.Controllers
         public async Task<ActionResult<CreateTransactionResponse>> Create(CreateTransactionRequest request,
                                                              CancellationToken cancellationToken)
         {
+            // Definido a data parametro como o agora como padrão;
+            request.UpdateDate(DateTime.UtcNow.Date);
+
             var response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
         }

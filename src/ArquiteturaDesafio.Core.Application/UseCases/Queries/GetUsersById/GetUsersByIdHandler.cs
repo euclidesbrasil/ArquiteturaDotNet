@@ -3,6 +3,7 @@ using ArquiteturaDesafio.Core.Domain.Interfaces;
 using MediatR;
 using ArquiteturaDesafio.Core.Domain.Common;
 using ArquiteturaDesafio.Core.Domain.Entities;
+using ArquiteturaDesafio.Core.Domain.Enum;
 namespace ArquiteturaDesafio.Core.Application.UseCases.Queries.GetUsersById;
 public sealed class GetUsersByIdHandler : IRequestHandler<GetUsersByIdRequest, GetUsersByIdResponse>
 {
@@ -19,6 +20,10 @@ public sealed class GetUsersByIdHandler : IRequestHandler<GetUsersByIdRequest, G
     {
 
         User user = await _repository.Get(query.id, cancellationToken);
+        if (user is null)
+        {
+            throw new InvalidOperationException($"Usuario não encontrado. Id: {query.id}");
+        }
 
         return _mapper.Map<GetUsersByIdResponse>(user);
     }
