@@ -11,7 +11,9 @@ services:
       - MongoDbSettings__ConnectionString=mongodb://desafio_mongodb:27017
       - MongoDbSettings__DatabaseName=desafio
       - RabbitMQSettings__HostName=desafio_rabbitmq
-
+      - DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_HTTP2UNENCRYPTEDSUPPORT=true
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+      - DOTNET_CLI_TELEMETRY_OPTOUT=1
   rabbitmq:
     image: "rabbitmq:3-management"
     container_name: desafio_rabbitmq
