@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
+		Dockerfile.Worker = Dockerfile.Worker
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiteturaDesafio.General.Api", "src\ArquiteturaDesafio.General.Api\ArquiteturaDesafio.General.Api.csproj", "{8B0FB356-7909-444A-8451-578E963BF28A}"
@@ -39,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiteturaDesafio.Test", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "f.Worker", "f.Worker", "{8A942522-AC0C-4172-B0EC-6DBBC309D355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArquiteturaDesafio.Worker", "src\ArquiteturaDesafio.Worker\ArquiteturaDesafio.Worker.csproj", "{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArquiteturaDesafio.Worker", "src\ArquiteturaDesafio.Worker\ArquiteturaDesafio.Worker.csproj", "{52D3FD7D-F643-4AD2-8A0D-1EBC419ACB32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

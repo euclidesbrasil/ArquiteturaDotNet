@@ -57,3 +57,26 @@ Para utilizar os endpoints, é necessário obter um token de autenticação. Uti
 
 - **Usuário:** admin
 - **Senha:** s3nh@
+
+
+## 📌 Endpoints
+
+### 🔹 Autenticação
+- **POST /auth/login** → Autentica um usuário e retorna um token JWT.
+
+### 🔹 Relatórios
+- **GET /Report/Daily/Mongodb?date=YYYY-MM-DD** → Retorna relatório diário do MongoDB.
+- **GET /Report/Daily/Postgres?date=YYYY-MM-DD** → Retorna relatório diário do PostgreSQL.
+
+### 🔹 Transações
+- **POST /Transaction** → Cria uma nova transação.
+- **PUT /Transaction?id=UUID** → Atualiza uma transação existente.
+- **DELETE /Transaction?id=UUID** → Remove uma transação.
+- **GET /Transaction** → Retorna uma lista paginada de transações.
+- **GET /Transaction/{id}** → Retorna detalhes de uma transação específica.
+
+### 🔹 Usuários
+- **POST /Users** → Cria um novo usuário.
+- **PUT /Users?id=UUID** → Atualiza um usuário existente.
+- **GET /Users** → Retorna uma lista paginada de usuários.
+- **GET /Users/{id}** → Retorna detalhes de um usuário específico.
