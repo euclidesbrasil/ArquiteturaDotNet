@@ -19,6 +19,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.Worker
+    restart: always
     environment:
       - MongoDbSettings__ConnectionString=mongodb://desafio_mongodb:27017
       - MongoDbSettings__DatabaseName=desafio

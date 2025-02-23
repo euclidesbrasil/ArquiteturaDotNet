@@ -29,7 +29,7 @@ Antes de baixar o projeto, certifique-se de ter instalado:
 No projeto **Ambev.General.Api**, abra o arquivo `appsettings.json` e ajuste a seção `DefaultConnection` com as credenciais do seu banco de dados local:
 
 ```json
-"DefaultConnection": "Host=localhost;Port=5432;Database=AMBEVDOTNET;Username=postgres;Password=admin"
+"DefaultConnection": "Host=localhost;Port=5432;Database=ARQDESAFIODOTNET;Username=postgres;Password=admin"
 ```
 
 ### 2. Configuração do MongoDB
@@ -48,11 +48,12 @@ Isso fará que o docker build a aplicação e suba as imagens necessárias.
 
 ATENÇÃO! Em ambos os casos, há um Worker responsável por ler as mensagens enviadas via RabbitMQ para poder gerar a versão do relatório via MongoDB;
 
+Localmente, você deve executar o exe manualmente, pelo visual studio (Depuprar nova insância sem inicializar) ou navegar até a pasta do proejto, apos efetuar o Rebuild da aplicação e executar o ArquiteturaDesafio.Worker.exe: src\ArquiteturaDesafio.Worker\bin\Debug\net8.0 ou em src\ArquiteturaDesafio.Worker\bin\Release\net8.0
+
+Já no Docker, caso o serviço não seja iniciado automaticamente, inicar o mesmo.
 ## 🔐 Autenticação
 
 Para utilizar os endpoints, é necessário obter um token de autenticação. Utilize as credenciais iniciais:
 
 - **Usuário:** admin
 - **Senha:** s3nh@
-
-4
