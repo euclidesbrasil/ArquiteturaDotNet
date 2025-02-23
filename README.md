@@ -13,7 +13,7 @@ Esta API fornece recursos para gerenciar autenticação, transações e expor os
 
 ## 🗉 Pré-requisitos
 
-Clone este projeto usando a URL: [https://github.com/euclidesbrasil/AMBEV.git](https://github.com/euclidesbrasil/ArquiteturaDotNet.git)
+Clone este projeto usando a URL: [https://github.com/euclidesbrasil/ArquiteturaDotNet.git](https://github.com/euclidesbrasil/ArquiteturaDotNet.git)
 
 Antes de baixar o projeto, certifique-se de ter instalado:
 
@@ -26,7 +26,7 @@ Antes de baixar o projeto, certifique-se de ter instalado:
 
 ### 1. Configuração do PostgreSQL
 
-No projeto **Ambev.General.Api**, abra o arquivo `appsettings.json` e ajuste a seção `DefaultConnection` com as credenciais do seu banco de dados local:
+No projeto **ArquiteturaDesafio.General.Api**, abra o arquivo `appsettings.json` e ajuste a seção `DefaultConnection` com as credenciais do seu banco de dados local:
 
 ```json
 "DefaultConnection": "Host=localhost;Port=5432;Database=ARQDESAFIODOTNET;Username=postgres;Password=admin"
@@ -40,7 +40,7 @@ No mesmo arquivo `appsettings.json`, há uma seção `ConnectionString` que defi
 
 Basta executar o projeto para iniciar a API. Na primeira execução, o banco de dados será criado automaticamente e os dados iniciais serão carregados. Poderá ser usado via Swagger;
 
-Caso queira rodar via docker, abrea o "PowerShell do Desenvolvedor" refernte a raiz da solução e execute o comando:
+Caso queira rodar via docker, abra o "PowerShell do Desenvolvedor" referente a raiz da solução e execute o comando:
 ```json
 docker-compose up --build -d
 ```
