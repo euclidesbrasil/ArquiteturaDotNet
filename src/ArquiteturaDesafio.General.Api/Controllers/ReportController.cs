@@ -17,6 +17,10 @@ public class ReportController : ControllerBase
     }
 
     [HttpGet("/Report/Daily/Mongodb/")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(500)]
     public async Task<IActionResult> GetDailyReport([FromQuery] DateTime? date)
     {
         // Se não for passado, usa a data atual (UTC)
@@ -30,6 +34,10 @@ public class ReportController : ControllerBase
 
     // Endpoint para PostgreSQL
     [HttpGet("/Report/Daily/Postgres/")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(500)]
     public async Task<IActionResult> GetDailyReportPostgres([FromQuery] DateTime? date)
     {
         var reportDate = (date ?? DateTime.UtcNow).Date;

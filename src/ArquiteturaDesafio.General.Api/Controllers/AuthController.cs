@@ -16,6 +16,9 @@ namespace ArquiteturaDesafio.General.Api.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Login([FromBody] AuthenticateUserRequest command, CancellationToken cancellationToken)
         {
             AuthenticateUserResult response = await _mediator.Send(command, cancellationToken);

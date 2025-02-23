@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copia todos os arquivos para o contêiner
+COPY /src .
+RUN ls -la
+
+# Restaura as dependências
+WORKDIR /src/ArquiteturaDesafio.Worker
+RUN dotnet restore "ArquiteturaDesafio.Worker.csproj"
+
+WORKDIR "/src/ArquiteturaDesafio.Worker"
+RUN dotnet publish "ArquiteturaDesafio.Worker.csproj" --configuration Release -o /app/publish --no-restore
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "ArquiteturaDesafio.Worker.dll"]

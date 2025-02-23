@@ -23,7 +23,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "General Api - Controle de autenticação, débitos, créditos e relatório diário por base de dados relacional e não relacional.", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "General Api - Controle de AUTH, DEBIT, CREDIT, REPORTS com o banco POSTGREE e MONGODB", Version = "v1" });
 
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {

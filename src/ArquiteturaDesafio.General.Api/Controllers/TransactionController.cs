@@ -22,6 +22,10 @@ namespace ArquiteturaDesafio.General.Api.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(201)] // Criação
+        [ProducesResponseType(400)] // Erro de validação
+        [ProducesResponseType(401)] // Autenticação
+        [ProducesResponseType(500)] // Erro interno
         public async Task<ActionResult<CreateTransactionResponse>> Create(CreateTransactionRequest request,
                                                              CancellationToken cancellationToken)
         {
@@ -29,27 +33,39 @@ namespace ArquiteturaDesafio.General.Api.Controllers
             request.UpdateDate(DateTime.UtcNow.Date);
 
             var response = await _mediator.Send(request, cancellationToken);
-            return Ok(response);
+            return CreatedAtAction("Create", new { id = response.id }, response);
         }
 
         [HttpPut]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
         public async Task<ActionResult<UpdateTransactionResponse>> Update(Guid id, [FromBody] UpdateTransactionRequest request,
                                                 CancellationToken cancellationToken)
         {
             request.UpdateId(id);
-            var response = await _mediator.Send(request, cancellationToken);
-            return Ok(response);
+            await _mediator.Send(request, cancellationToken);
+            return NoContent();
         }
 
         [HttpDelete]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Delete(Guid id,
                                                 CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new DeleteTransactionRequest(id), cancellationToken);
-            return Ok(response);
+            await _mediator.Send(new DeleteTransactionRequest(id), cancellationToken);
+            return NoContent();
         }
 
         [HttpGet("/Transaction/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
         public async Task<ActionResult<GetTransactionsByIdResponse>> GetById(Guid id,CancellationToken cancellationToken)
         {
             var request = new GetTransactionsByIdRequest(id);
@@ -58,6 +74,10 @@ namespace ArquiteturaDesafio.General.Api.Controllers
         }
 
         [HttpGet("/Transaction")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(500)]
         public async Task<ActionResult<GetTransactionsQueryResponse>> GetAllQuery(CancellationToken cancellationToken, int _page = 1, int _size = 10, [FromQuery] Dictionary<string, string> filters = null, string _order = "id asc")
         {
             filters = filters ?? new Dictionary<string, string>();
