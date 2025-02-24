@@ -76,7 +76,7 @@ public class Program
         var app = builder.Build();
 
         // Registra o filtro de exceção personalizado
-        app.UseMiddleware<ExceptionHandlingMiddleware>(true);
+        app.UseMiddleware<ExceptionHandlingMiddleware>(app.Environment.IsDevelopment());
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
