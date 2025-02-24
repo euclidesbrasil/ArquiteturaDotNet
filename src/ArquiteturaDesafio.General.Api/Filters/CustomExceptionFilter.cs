@@ -6,108 +6,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using FluentValidation;
+using System.Text.Json;
 
 namespace ArquiteturaDesafio.General.Api.Filters
 {
-    public class CustomExceptionFilter : IExceptionFilter
+    public class ExceptionHandlingMiddleware
     {
-        private readonly ILogger<CustomExceptionFilter> _logger;
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+        private readonly bool _enableDetailedLogging;
 
-        public CustomExceptionFilter(ILogger<CustomExceptionFilter> logger)
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger, bool enableDetailedLogging)
         {
-            _logger = logger;
+            _next = next ?? throw new ArgumentNullException(nameof(next));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _enableDetailedLogging = enableDetailedLogging;
         }
 
-        public void OnException(ExceptionContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
-            var exception = context.Exception;
-
-            switch (exception)
+            try
             {
-                // Erros de validação (400 Bad Request)
-                case ValidationException validationException:
-                    var errors = validationException.Errors
-                        .Select(error => $"{error.PropertyName}: {error.ErrorMessage}")
-                        .ToList();
-
-                    context.Result = new BadRequestObjectResult(new
-                    {
-                        Title = "Validation errors.",
-                        Status = (int)HttpStatusCode.BadRequest,
-                        Errors = errors
-                    });
-
-                    LogException(exception, "Validation error occurred.");
-                    context.ExceptionHandled = true;
-                    break;
-
-                // Recurso não encontrado (404 Not Found)
-                case KeyNotFoundException _:
-                case ArgumentNullException _:
-                    context.Result = new NotFoundObjectResult(new
-                    {
-                        Title = "Resource not found.",
-                        Status = (int)HttpStatusCode.NotFound,
-                        Detail = exception.Message
-                    });
-
-                    LogException(exception, "Resource not found.");
-                    context.ExceptionHandled = true;
-                    break;
-
-                // Erros de solicitação inválida (400 Bad Request)
-                case ArgumentException _:
-                case InvalidOperationException _:
-                    context.Result = new BadRequestObjectResult(new
-                    {
-                        Title = "Invalid request.",
-                        Status = (int)HttpStatusCode.BadRequest,
-                        Detail = exception.Message
-                    });
-
-                    LogException(exception, "Invalid request.");
-                    context.ExceptionHandled = true;
-                    break;
-
-                // Erros de autenticação/autorização (401 Unauthorized)
-                case UnauthorizedAccessException _:
-                    context.Result = new ObjectResult(new
-                    {
-                        Title = "Unauthorized.",
-                        Status = (int)HttpStatusCode.Unauthorized,
-                        Detail = exception.Message
-                    })
-                    {
-                        StatusCode = (int)HttpStatusCode.Unauthorized
-                    };
-
-                    LogException(exception, "Unauthorized access attempt.");
-                    context.ExceptionHandled = true;
-                    break;
-
-                // Erros internos do servidor (500 Internal Server Error)
-                default:
-                    context.Result = new ObjectResult(new
-                    {
-                        Title = "Internal server error.",
-                        Status = (int)HttpStatusCode.InternalServerError,
-                        Detail = "Ocorreu um erro inesperado. Tente novamente mais tarde."
-                    })
-                    {
-                        StatusCode = (int)HttpStatusCode.InternalServerError
-                    };
-
-                    LogException(exception, "Unexpected error occurred.");
-                    context.ExceptionHandled = true;
-                    break;
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An exception occurred while processing the request.");
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        private void LogException(Exception exception, string message)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            Console.WriteLine($"Erro: {exception.Message}");
-            Console.WriteLine($"StackTrace: {exception.StackTrace}");
-            _logger.LogError(exception, message);
+            var response = context.Response;
+            response.ContentType = "application/json";
+
+            var statusCode = GetStatusCodeForException(exception);
+            response.StatusCode = (int)statusCode;
+
+            var errorResponse = new ErrorResponse
+            {
+                StatusCode = (int)statusCode,
+                Message = exception.Message,
+                // StackTrace só será incluído se o registro detalhado estiver ativado
+                Detailed = _enableDetailedLogging ? exception.StackTrace : null
+            };
+
+            var payload = JsonSerializer.Serialize(errorResponse);
+
+            await response.WriteAsync(payload);
         }
+
+        private static HttpStatusCode GetStatusCodeForException(Exception exception)
+        {
+            return exception switch
+            {
+                ArgumentNullException => HttpStatusCode.BadRequest,
+                ArgumentException => HttpStatusCode.BadRequest,
+                KeyNotFoundException => HttpStatusCode.NotFound,
+                UnauthorizedAccessException => HttpStatusCode.Unauthorized,
+                ValidationException => HttpStatusCode.UnprocessableEntity,
+                _ => HttpStatusCode.InternalServerError
+            };
+        }
+    }
+
+    // Classe auxiliar para resposta estruturada a erros
+    public class ErrorResponse
+    {
+        public int StatusCode { get; set; }
+        public string Message { get; set; }
+        public string Detailed { get; set; } // Anulável para evitar a exposição do rastreamento de pilha na produção
     }
 }
