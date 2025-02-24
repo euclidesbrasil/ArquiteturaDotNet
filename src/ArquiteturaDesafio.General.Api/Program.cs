@@ -71,8 +71,8 @@ public class Program
                 };
             });
 
-       
 
+        builder.Logging.AddFile("Logs/app_log.txt"); // Log em arquivo
         var app = builder.Build();
 
         // Registra o filtro de exceção personalizado
