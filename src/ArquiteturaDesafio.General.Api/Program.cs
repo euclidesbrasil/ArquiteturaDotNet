@@ -72,9 +72,14 @@ public class Program
             });
 
         // Registra o filtro de exceção personalizado
-        builder.Services.AddMvc(options =>
+        builder.Logging.ClearProviders(); // Remove provedores padrão
+        builder.Logging.AddConsole();     // Log no console
+        builder.Logging.AddFile("Logs/app_log.txt"); // Log em arquivo
+
+        builder.Services.AddScoped<CustomExceptionFilter>(); // Registra como serviço
+        builder.Services.AddControllers(options =>
         {
-            options.Filters.Add(new CustomExceptionFilter());
+            options.Filters.AddService<CustomExceptionFilter>(); // Usa DI para injetar dependências
         });
 
         var app = builder.Build();
